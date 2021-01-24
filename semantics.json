@@ -43,6 +43,7 @@
     "widget": "html",
     "label": "Question",
     "enterMode": "p",
+    "optional": true,
     "tags": [
       "strong",
       "em",
@@ -52,7 +53,12 @@
       "h3",
       "pre",
       "code"
-    ]
+    ],
+    "font": {
+      "size": true,
+      "color": true,
+      "background": true
+    }
   },
   {
     "name": "answers",
@@ -80,7 +86,12 @@
             "sub",
             "sup",
             "code"
-          ]
+          ],
+          "font": {
+            "size": true,
+            "color": true,
+            "background": true
+          }
         },
         {
           "name": "correct",
