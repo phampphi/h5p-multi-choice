@@ -949,6 +949,10 @@ H5P.MultiChoice = function (options, contentId, contentData) {
         }
       }
     }
+
+    // Add title for h5p-php-reporting
+    definition.extensions = {};
+    definition.extensions.title = self.getTitle();
   };
 
   /**
