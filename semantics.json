@@ -12,7 +12,8 @@
         "importance": "medium",
         "options": [
           "H5P.Image 1.1",
-          "H5P.Video 1.5"
+          "H5P.Video 1.5",
+          "H5P.Audio 1.4"
         ],
         "optional": true,
         "description": "Optional media to display above the question."
@@ -392,6 +393,14 @@
         "type": "boolean",
         "label": "Enable \"Check\" button",
         "widget": "none",
+        "importance": "low",
+        "default": true,
+        "optional": true
+      },
+      {
+        "name": "enableTranscript",
+        "type": "boolean",
+        "label": "Enable \"Transcript\" button",
         "importance": "low",
         "default": true,
         "optional": true

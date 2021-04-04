@@ -222,6 +222,10 @@ H5P.MultiChoice = function (options, contentId, contentData) {
           self.setVideo(media);
         }
       }
+      else if (type == 'H5P.Audio' && media.params.files?.length > 0){
+        // Attach Audio component
+        self.setAudio(self.contentId, media.params);
+      }
     }
 
     // Determine if we're using checkboxes or radio buttons
@@ -555,6 +559,8 @@ H5P.MultiChoice = function (options, contentId, contentData) {
     self.showButton('check-answer');
     self.hideButton('try-again');
     self.hideButton('show-solution');
+    self.hideButton('show-transcript');
+    self.hideTranscript();
     enableInput();
     $myDom.find('.h5p-feedback-available').remove();
   };
@@ -592,6 +598,9 @@ H5P.MultiChoice = function (options, contentId, contentData) {
     }
     if (params.behaviour.enableRetry) {
       self.showButton('try-again');
+    }
+    if (params.behaviour.enableTranscript) {
+      self.showButton('show-transcript');
     }
     self.hideButton('check-answer');
 
@@ -678,7 +687,9 @@ H5P.MultiChoice = function (options, contentId, contentData) {
       self.showButton('check-answer');
       self.hideButton('try-again');
       self.hideButton('show-solution');
+      self.hideButton('show-transcript');
       self.hideSolutions();
+      self.hideTranscript();
       removeSelections();
       enableInput();
       $myDom.find('.h5p-feedback-available').remove();
@@ -710,6 +721,15 @@ H5P.MultiChoice = function (options, contentId, contentData) {
         $parentElement: $container
       }
     });
+
+    if (params.behaviour.enableTranscript){
+      self.addButton('show-transcript', 'Transcript', function () {
+        self.showTranscript();
+        self.hideButton('show-transcript');
+      }, false, {
+        'aria-label': 'Transcript',
+      });
+    }
   };
 
   /**
@@ -951,7 +971,7 @@ H5P.MultiChoice = function (options, contentId, contentData) {
     }
 
     // Add title for h5p-php-reporting
-    definition.extensions = {};
+    definition.extensions = definition.extensions || {};
     definition.extensions.title = self.getTitle();
   };
 
